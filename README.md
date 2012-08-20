@@ -7,8 +7,8 @@ Usage
 -----
 
 You have to define two urls in your *urls.py*.
-	1. URL which will serve as the base for the custom registration codes (*register/* in the example)
-	2. Custom registration backend for django-registration. It is used to block the registration if user is not using correct URL with code
+ 1. URL which will serve as the base for the custom registration codes (*register/* in the example)
+ 2. Custom registration backend for django-registration. It is used to block the registration if user is not using correct URL with code.
 
 ```python
 
@@ -28,7 +28,7 @@ How it works
 
 Registration links can be created using *Django Admin* or in some automated manner that you can develop.
 
-When user visits the correct registration link otherwise he is presented with 403 page. When user tries to visit registration page (/accounts/register/ when using same urls as in example) without using registration link, he is presented with 'registration closed' page. You can easily customize it by providing the template. It has to be placed in 'templates/registration/registration_closed.html'
+When user tries to visit registration page (/accounts/register/ when using same urls as in example) without using registration link, he is presented with 'registration closed' page. You can easily customize it by providing the template. It has to be placed in 'templates/registration/registration_closed.html'
 
 
 Testing
