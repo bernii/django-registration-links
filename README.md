@@ -38,5 +38,6 @@ Project has full unit test coverage which you can run from your shell.
 
     ./manage.py test registration_links
 
+![Continuous Integration status](https://secure.travis-ci.org/bernii/django-registration-links.png)
 
 Got some questions or suggestions? [Mail me](mailto:bkobos+ghdrl@extensa.pl) directly or use the [issue tracker](/issues).
