@@ -1,23 +1,12 @@
 from django.utils import unittest
-from models import RegistrationLink
 from django.core.urlresolvers import reverse
-from views import check_registration_link
 from django.test.client import Client
-from django.conf.urls.defaults import patterns, include, url
-from regbackend import RegistrationFormNoUserName
+from ..models import RegistrationLink
+from ..views import check_registration_link
 
 
 class TestUrlAccess(unittest.TestCase):
-    urls = patterns('',
-        url(r'^register/(?P<code>\w+)$',
-            check_registration_link),
-        url(r'^accounts/register/$',
-            'registration.views.register',
-            {'backend': 'registration_links.SimpleBackend',
-            'success_url': '/',
-            'form_class': RegistrationFormNoUserName},
-            name='registration_register')
-    )
+    urls = 'urls'
     code = "foo"
 
     def setUp(self):
@@ -58,7 +47,7 @@ class TestUrlAccess(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         # Submit registration form
         response = self.client.post(reverse('registration_register'), {'email': '%s@bar.com' % username,
-            'password1': 'test', 'password2': 'test'}, follow=True)
+            'password1': 'test', 'password2': 'test', 'username': username}, follow=False)
 
     def logout_user(self):
         """Request the logout url to logout the user"""
@@ -103,5 +92,5 @@ class TestUrlAccess(unittest.TestCase):
         """User should not be able to access registration page when he is logged in"""
         self.register_user("foo3")
         response = self.client.post(reverse('registration_register'), {'email': 'foo2@bar.com',
-            'password1': 'test', 'password2': 'test'}, follow=True)
-        self.assertTrue('accounts/register/closed' in response.redirect_chain[0][0])
+            'password1': 'test', 'password2': 'test', 'username': 'foo2'})
+        self.assertTrue('accounts/register/closed' in response["Location"])

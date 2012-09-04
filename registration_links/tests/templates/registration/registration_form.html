@@ -1,0 +1,15 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Register for an account" %}{% endblock %}
+{% block admin_content %}
+<h6>{% trans "Create a new account" %}</h6>
+<h1>{% trans "Register for an account" %}</h1>
+<form class="well" method='post' action=''>
+	<table class="left-aligned-form">
+	{% csrf_token %}
+    {{ form }}
+    <tr><td></td><td><input type="submit" class="btn" value="Utwórz konto" class="btn"/></td>
+    </table>
+</form>
+
+{% endblock %}

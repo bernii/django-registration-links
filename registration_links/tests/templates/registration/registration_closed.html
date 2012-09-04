@@ -1,0 +1,11 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Login" %}{% endblock %}
+{% block admin_content %}
+<h1>{% trans "Registration is closed" %}</h1>
+<p>
+	{% trans "Sorry, the registration is closed. If you would like to recive individual registration link please contact us using your preffered contact channel. Find more info on <strong>Contact</strong> subpage." %}</p>
+<a class="btn btn-large" href="/contact">{% trans "Contact" %}</a>
+
+{% endblock %}

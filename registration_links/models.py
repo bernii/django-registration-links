@@ -8,7 +8,7 @@ from django.db.models import F
 
 
 def id_generator(size=3, chars=string.ascii_lowercase + string.digits):
-    """ Generate a simple random id consiting of lowercase letters and digits """
+    """Generate a simple random id consiting of lowercase letters and digits"""
     return ''.join(random.choice(chars) for x in range(size))
 
 
@@ -41,7 +41,7 @@ class RegistrationLink(models.Model):
 
 @receiver(signals.user_registered, sender=SimpleBackend)
 def user_registered_callback(sender, **kwargs):
-    """ When user completes registration increment the counter of used_times and remove session variable """
+    """When user completes registration increment the counter of used_times and remove session variable"""
     req_link_id = int(kwargs['request'].session["reg_link"])
     reg_link = RegistrationLink.objects.get(id=req_link_id)
     reg_link.used_times = F('used_times') + 1

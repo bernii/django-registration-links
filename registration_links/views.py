@@ -6,7 +6,7 @@ from django.utils.translation import ugettext as _
 
 
 def check_registration_link(request, code):
-    """ If link is correct, set session and redirect to registration view (where session is checked) """
+    """If link is correct, set session and redirect to registration view (where session is checked)"""
     reg_link = None
     try:
         reg_link = RegistrationLink.objects.get(code=code)
